@@ -1,0 +1,352 @@
+/* =====================
+   Variables (Light)
+===================== */
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #111111;
+  --border: #e0e0e0;
+
+  --bg-gradient: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+
+/* =====================
+   Reset / Base
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::placeholder {
+  opacity: 0.6;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+
+  font-family: system-ui, Arial, sans-serif;
+  color: var(--text);
+
+  background: var(--bg-gradient);
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+
+/* =====================
+   Layout App (Glass)
+===================== */
+.app {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 18px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+}
+
+/* =====================
+   Form
+===================== */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+#todo-input:focus {
+  border-color: #999;
+}
+
+/* Date input */
+#todo-date {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Si tu veux garder ta class .date en plus */
+.date {
+  border-radius: 12px;
+  background: transparent;
+}
+
+#add-button {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  background-color: #111;
+  color: white;
+  cursor: pointer;
+}
+
+#add-button:hover {
+  opacity: 0.9;
+}
+
+/* =====================
+   List + Counter
+===================== */
+#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  gap: 10px;
+}
+
+#counter {
+  margin: 14px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* =====================
+   Filters / Views buttons
+===================== */
+#filters,
+#views {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#views {
+  margin-top: 10px;
+}
+
+#filters button,
+#views button {
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+#filters button:hover,
+#views button:hover {
+  background: #f2f2f2;
+}
+
+#views button.active,
+#filters button.active {
+  background: #111;
+  color: white;
+  border-color: #111;
+}
+
+/* =====================
+   Todo Item (Pill)
+===================== */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: fadeIn 0.25s ease;
+}
+
+.todo-pill {
+  flex: 1;
+  display: flex;
+  align-items: stretch; /* la partie droite prend la hauteur */
+  overflow: hidden;
+
+  border: 1px solid #eee;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff, #fafafa);
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.todo-pill:hover {
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* Partie gauche */
+.todo-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.todo-text {
+  font-size: 1rem;
+}
+
+.todo-date {
+  margin-left: 10px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Partie droite (zone colorée) */
+.todo-right {
+  width: 92px;
+  display: grid;
+  place-items: center;
+}
+
+/* Rond avec numéro */
+.todo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  font-weight: 800;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Delete */
+.todo-delete {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.todo-delete:hover {
+  opacity: 1;
+}
+
+/* =====================
+   States
+===================== */
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+}
+
+.todo-item.done .todo-pill {
+  opacity: 0.6;
+}
+
+.todo-item.overdue .todo-text {
+  color: #d63031;
+  font-weight: 600;
+}
+
+/* Couleurs alternées (1,2,3,4...) */
+.todo-item:nth-child(4n + 1) .todo-right { background: #ff5a66; }
+.todo-item:nth-child(4n + 2) .todo-right { background: #6b63ff; }
+.todo-item:nth-child(4n + 3) .todo-right { background: #44d07a; }
+.todo-item:nth-child(4n + 4) .todo-right { background: #ffcd4d; }
+
+.todo-item:nth-child(4n + 1) .todo-badge { background: rgba(0, 0, 0, 0.12); }
+.todo-item:nth-child(4n + 2) .todo-badge { background: rgba(0, 0, 0, 0.12); }
+.todo-item:nth-child(4n + 3) .todo-badge { background: rgba(0, 0, 0, 0.12); }
+.todo-item:nth-child(4n + 4) .todo-badge { background: rgba(0, 0, 0, 0.12); }
+
+/* =====================
+   Theme Toggle button
+===================== */
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  background: transparent;
+  border: none;
+
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+/* =====================
+   Dark Theme (variables)
+===================== */
+body[data-theme="dark"] {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --text: #f1f1f1;
+  --border: #333;
+
+  --bg-gradient: radial-gradient(circle, rgba(20, 20, 30, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+/* Ajustements lisibilité en dark */
+body[data-theme="dark"] #counter,
+body[data-theme="dark"] .todo-date {
+  opacity: 0.85;
+}
+
+body[data-theme="dark"] ::placeholder {
+  color: #ccc;
+  opacity: 0.5;
+}
+
+body[data-theme="dark"] #views button.active,
+body[data-theme="dark"] #filters button.active {
+  background: white;
+  color: #111;
+  border-color: white;
+}
+
+/* =====================
+   Animations
+===================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
